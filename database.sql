@@ -201,7 +201,7 @@ CREATE INDEX idx_rules_cluster ON rules(cluster_cid);
 -- ============================================
 
 -- Insert Users
-INSERT INTO users (username, user_contact, password, metadata, role) VALUES
+INSERT INTO users (username, user_contact, password_hash, metadata, role) VALUES
 ('john_doe', '{"email": "john@example.com", "phone": "1234567890"}', 'hashed_password_1', '{"profile_pic": "url1", "bio": "Hello World"}', 'admin'),
 ('jane_smith', '{"email": "jane@example.com", "phone": "0987654321"}', 'hashed_password_2', '{"profile_pic": "url2", "bio": "Hi there"}', 'user'),
 ('bob_wilson', '{"email": "bob@example.com", "phone": "5555555555"}', 'hashed_password_3', '{"profile_pic": "url3", "bio": "Developer"}', 'user');
