@@ -8,9 +8,9 @@ CREATE TABLE users(
     uid INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(100) NOT NULL UNIQUE,
     user_contact JSON NOT NULL,
-    password VARCHAR(255) NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
     metadata JSON NOT NULL,
-    role VARCHAR(50) NOT NULL,
+    role ENUM('admin', 'user', 'guest', 'verified_user') NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )ENGINE=InnoDB;
@@ -181,7 +181,7 @@ CREATE TABLE user_moderates_cluster(
 -- ============================================
 -- INDEXES FOR BETTER QUERY PERFORMANCE
 -- ============================================
-CREATE INDEX idx_posts_author ON posts(author_uid);
+CREATE INDEX idx_posts_author ON posts(author_uid, cluster_cid, pid);
 CREATE INDEX idx_posts_cluster ON posts(cluster_cid);
 CREATE INDEX idx_posts_ref_post ON posts(ref_post_pid);
 CREATE INDEX idx_posts_ref_window ON posts(ref_window_wid);
